@@ -31,10 +31,10 @@
         {% for property in propertys %}
         <div class="col-lg-4 col-md-6 align-self-center mb-30 properties-items col-md-6 adv">
           <div class="item">
-            <a href="property-details.html"><img src="{{property.photo.url}}" alt="" height="250px" width="250px"></a>
+            <a href="{% url 'detail' property.id property.slug %}"><img src="{{property.photo.url}}" alt="" height="250px" width="250px"></a>
             <span class="category">{{property.category}}</span>
             <h6>${{property.price_per_night}}</h6>
-            <h4><a href="property-details.html">{{property.address}}</a></h4>
+            <h4><a href="{% url 'detail' property.id property.slug %}">{{property.title}}</a></h4>
             <ul>
               <li>Area: <span>{{property.square_meter}}m2</span></li>
               <li>Floor: <span>{{property.floor}}</span></li>

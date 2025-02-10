@@ -736,24 +736,23 @@ Banner Style
 --------------------------------------------- 
 */
 
-.main-banner .item {
+.main-banner .owl-carousel .item {
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
-  padding: 220px 20% 320px 20%;
+  height: 100vh; /* Görselin tam ekranı kaplamasını sağlıyoruz */
   margin-top: 0px;
 }
 
-.main-banner .item-1 {
-  background-image: url(../images/banner-01.jpg);
-}
-
-.main-banner .item-2 {
-  background-image: url(../images/banner-02.jpg);
-}
-
-.main-banner .item-3 {
-  background-image: url(../images/banner-03.jpg);
+.main-banner .item .header-text {
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100%; /* Header kısmı da tam olarak item'ın içine yerleşecek */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }
 
 .main-banner .item span.category {
@@ -837,7 +836,6 @@ Banner Style
   opacity: 1;
   background-color: rgba(255, 255, 255, 0.5);
 }
-
 
 
 /* 
