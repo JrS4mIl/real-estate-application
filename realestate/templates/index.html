@@ -1,7 +1,9 @@
 {% extends 'base.html' %}
 
 {% block content %}
+{% include 'includes/messagetax.html' %}
 <div class="main-banner">
+
     <div class="owl-carousel owl-banner">
         {% for item in is_featured %}
         <div class="item item-{{forloop.counter}}">

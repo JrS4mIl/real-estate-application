@@ -464,20 +464,14 @@ Header Style
 }
 
 .header-area .main-nav .nav li:last-child a {
-  background-color: #1e1e1e;
-  color: #fff;
-  font-size: 14px;
   font-weight: 400;
-  text-transform: none;
-  border-radius: 20px;
   padding-left: 0px;
 }
 
 .header-area .main-nav .nav li:last-child a i {
-  background-color: #f35525;
   display: inline-block;
-  width: 40px;
-  height: 40px;
+  width: 70px;
+  height: 70px;
   text-align: center;
   line-height: 40px;
   margin-right: 10px;
@@ -486,7 +480,7 @@ Header Style
 }
 
 .header-area .main-nav .nav li:last-child:hover a {
-  background-color: #1e1e1e;
+
 }
 
 .header-area .main-nav .nav li:last-child:hover a i {
