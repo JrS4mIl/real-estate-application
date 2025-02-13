@@ -72,6 +72,9 @@ span.psw {
   .cancelbtn {
     width: 100%;
   }
+  .forgot-password {
+    text-decoration: underline;
+}
 }
 </style>
 <form action="" method="POST" role="form">
@@ -85,6 +88,7 @@ span.psw {
     <label for="psw"><b>Password</b></label>
    {{form.password}}
     <input type="submit" value="Submit" class="btn btn-info">
+    <a class="forgot-password" href="{% url 'forgot_password' %}">Forget Password</a>
 
 
 
