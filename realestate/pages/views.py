@@ -6,23 +6,33 @@ from django.views.generic.edit import FormView
 from django.urls import reverse_lazy
 from django.contrib import messages
 # Create your views here.
+from accounts.models import Profile
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 def index(request):
-    is_featured = Property.objects.filter(available=True, is_featured=True)
+    is_featured = Property.objects.filter(available=True, is_featured=True,status='published')
     random_houses = Property.objects.filter(available=True).order_by("?")[:6]
+    is_featured_profile=Profile.objects.filter(is_featured=True)
     context = {
         'is_featured': is_featured,
-        'random_houses': random_houses
+        'random_houses': random_houses,
+        'is_featured_profile':is_featured_profile
     }
 
     return render(request, 'index.html', context)
 
 
 def advertisements(request):
-    propertys = Property.objects.filter(available=True)
+    propertys = Property.objects.filter(available=True,status='published').order_by('-created_at')
     category=Category.objects.all()
+    paginator = Paginator(propertys, 3)  # Her sayfada 2 öğe gösterir
+    page = request.GET.get('page')
+    paged_propertys = paginator.get_page(page)
+
     context = {
         'propertys': propertys,
-        'category':category
+        'category':category,
+        'paged_propertys': paged_propertys,
+
 
     }
     return render(request, 'properties.html', context)
@@ -59,3 +69,14 @@ def category_list(request, category_slug):
         'category': category
     }
     return render(request, 'properties.html', context)
+def profile_show(request,id):
+    properties_status = Property.objects.filter(owner=id, status='published',available=True).order_by('-created_at')
+    paginator = Paginator(properties_status, 4)  # Her sayfada 2 öğe gösterir
+    page = request.GET.get('page')
+    paged_propertys = paginator.get_page(page)
+    context={
+        'properties_status':properties_status,
+        'paged_propertys':paged_propertys
+    }
+
+    return render(request,'profile.html',context)

@@ -12,21 +12,29 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 
 from pathlib import Path
 import os
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 from django.contrib import messages
+from django.utils.translation import gettext_lazy as _
+import environ
+
+
+
+env=environ.Env(DEBUG=(bool,False))
+environ.Env.read_env()
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
+DEBUG=env('DEBUG')
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-vfqg+%q4j=pz2pzm41#*@mfez9p3h=_vaq85g2ns*kq(lpapke'
-
+SECRET_KEY=env('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = []
 
 
+ALLOWED_HOSTS = env('ALLOWED_HOSTS',cast=list)
+
+CSRF_TRUSTED_ORIGINS=env('CSRF_TRUSTED_ORIGINS',cast=list)
 # Application definition
 
 INSTALLED_APPS = [
@@ -36,19 +44,25 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'parler',
+    'modeltranslation',
     'pages',
     'houses',
-    'accounts'
+    'accounts',
+    'rosetta',
+
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
 ]
 
 ROOT_URLCONF = 'realestate.urls'
@@ -71,7 +85,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'realestate.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
@@ -81,7 +94,6 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
@@ -101,18 +113,23 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/5.1/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'en'
+
+LANGUAGES = [
+    ('en', _('English')),
+    ('tr', _('Turkish')),
+    ('uk', _('Ukrainian'))
+]
+MODELTRANSLATION_DEFAULT_LANGUAGE = 'en'
 
 TIME_ZONE = 'UTC'
 
 USE_I18N = True
-
+USE_L10N = True
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
@@ -138,3 +155,18 @@ EMAIL_HOST_PASSWORD = 'ekuenaulbkuxlbcg'
 EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = 'foodOnline Marketplace <zeuszypan@gmail.com>'
 EMAIL_HOST = 'smtp.gmail.com'
+
+LOCALE_PATHS = [
+    BASE_DIR / 'locale/',
+]
+PARLER_LANGUAGES = {
+    None: (
+        {'code': 'tr',},
+        {'code': 'uk',},
+        {'code':'en',}
+    ),
+    'default': {
+        'fallbacks': ['en'],
+        'hide_untranslated': False,
+    }
+}

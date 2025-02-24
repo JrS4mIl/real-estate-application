@@ -2,9 +2,12 @@ import slugify
 from django.db import models
 from django.contrib.auth.models import User
 from django.template.defaultfilters import slugify
+from django.utils.translation import gettext_lazy as _
+from parler.models import  TranslatableModel,TranslatedFields
+from django.utils.text import slugify
 # Create your models here.
 class Category(models.Model):
-    name = models.CharField(max_length=100, unique=True)
+    name = models.CharField(_('title'),max_length=100, unique=True)
     slug = models.SlugField(editable=False)
 
     def __str__(self):
@@ -14,33 +17,43 @@ class Category(models.Model):
         super(Category, self).save(*args, **kwargs)
 
 
-class Property(models.Model):
+class Property(TranslatableModel):
+    STATUS_CHOICES = (
+        ('draft', 'Draft'),
+        ('published', 'Published'),
+        ('flaw','Flaw')
+    )
     owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name='properties', verbose_name="Ev Sahibi")
-    title = models.CharField(max_length=255, verbose_name="Başlık")
-    description = models.TextField(verbose_name="Açıklama",max_length=400)
-    slug = models.SlugField(default='slug', editable=False)
+    translations=TranslatedFields(
+        title = models.CharField(_('title'),max_length=255),
+        description = models.TextField(_('description'),max_length=400)
+    )
+    slug = models.SlugField(unique=True, editable=False, blank=True)
     photo = models.ImageField(upload_to='photos/%Y/%m/%d/')
     photo_1 = models.ImageField(upload_to='photos/%Y/%m/%d/', blank=True)
     photo_2 = models.ImageField(upload_to='photos/%Y/%m/%d/', blank=True)
     photo_3 = models.ImageField(upload_to='photos/%Y/%m/%d/', blank=True)
     photo_4 = models.ImageField(upload_to='photos/%Y/%m/%d/', blank=True)
-    address = models.CharField(max_length=255, verbose_name="Adres")
-    city = models.CharField(max_length=100, verbose_name="Şehir")
-    floor = models.IntegerField(verbose_name="Kat",default=1)
-    price_per_night = models.DecimalField(max_digits=10, decimal_places=2, verbose_name="Gecelik Ücret")
-    available = models.BooleanField(default=True, verbose_name="Mevcut")
-    category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True, blank=True, related_name='properties', verbose_name="Kategori")
-    room_count = models.IntegerField(verbose_name="Oda Sayısı")
-    square_meter = models.DecimalField(max_digits=6, decimal_places=2, verbose_name="Metrekare")
+    address = models.CharField(max_length=255, verbose_name=_("Adres"))
+    city = models.CharField(max_length=100, verbose_name=_("Şehir"))
+    floor = models.IntegerField(verbose_name=_("Kat"),default=1)
+    price_per_night = models.DecimalField(max_digits=10, decimal_places=2, verbose_name=_("Gecelik Ücret"))
+    available = models.BooleanField(default=False, verbose_name="Mevcut")
+    category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True, blank=True, related_name='properties', verbose_name=_("Kategori"))
+    room_count = models.IntegerField(verbose_name=_("Oda Sayısı"))
+    square_meter = models.DecimalField(max_digits=6, decimal_places=2, verbose_name=_("Metrekare"))
     is_featured=models.BooleanField(default=False,verbose_name='is_featured')
+    status = models.CharField(max_length=10, choices=STATUS_CHOICES,default="draft")
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="Oluşturulma Tarihi")
     updated_at = models.DateTimeField(auto_now=True, verbose_name="Güncellenme Tarihi")
 
     def save(self, *args, **kwargs):
-        self.slug = slugify(self.title)
-        super(Property, self).save(*args, **kwargs)
+        if not self.slug:
+            self.slug = slugify(self.safe_translation_getter('title', any_language=True))
+        super().save(*args, **kwargs)
+
     def __str__(self):
-        return self.title
+        return self.safe_translation_getter('title', any_language=True)
 
 
 class Booking(models.Model):

@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
+{% load i18n %}
 <style>
     .no-properties {
   text-align: center;
@@ -16,7 +17,7 @@
         <div class="row">
             <div class="col-lg-12">
                 <span class="breadcrumb"><a href="{% url 'index' %}">Home</a> / Properties</span>
-                <h3>Properties</h3>
+                <h3>{% trans 'properties_header' %}</h3>
             </div>
         </div>
     </div>
@@ -26,11 +27,12 @@
     <div class="container">
         <ul class="properties-filter">
             <li>
-                <a class="" href="{% url 'advertisements' %}" data-filter="*">Show All</a>
+                <a class="" href="{% url 'advertisements' %}" data-filter="*">{% trans 'Show All' %}</a>
             </li>
             {% for ct in category %}
             <li>
-                <a class="{% if request.resolver_match.kwargs.slug == ct.slug %}is_active{% endif %}" href="{% url 'category_list' ct.slug %}">
+                <a class="{% if request.resolver_match.kwargs.slug == ct.slug %}is_active{% endif %}"
+                   href="{% url 'category_list' ct.slug %}">
                     {{ ct.name }}
                 </a>
 
@@ -39,9 +41,9 @@
             {% endfor %}
 
         </ul>
-        {% if propertys %}
+        {% if paged_propertys %}
         <div class="row properties-box">
-            {% for property in propertys %}
+            {% for property in paged_propertys %}
             <div class="col-lg-4 col-md-6 align-self-center mb-30 properties-items col-md-6 adv">
                 <div class="item">
                     <a href="{% url 'detail' property.id property.slug %}"><img src="{{property.photo.url}}" alt=""
@@ -62,19 +64,57 @@
         </div>
         {% else %}
         <div class="no-properties">
-            <p>Şu anda listelenecek mülk bulunmamaktadır.</p>
+
+            <p>{% trans 'Şu anda listelenecek mülk bulunmamaktadır' %}.</p>
         </div>
         {% endif %}
-        <div class="row">
-            <div class="col-lg-12">
-                <ul class="pagination">
-                    <li><a href="#">1</a></li>
-                    <li><a class="is_active" href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li><a href="#">>></a></li>
-                </ul>
-            </div>
-        </div>
+        <nav class="mt-4" aria-label="Page navigation example">
+            {% if paged_propertys.has_other_pages %}
+            <ul class="pagination justify-content-center">
+                {% if paged_propertys.has_previous %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ paged_propertys.previous_page_number }}" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                </li>
+                {% else %}
+                <li class="page-item disabled">
+                    <a class="page-link" href="#" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                </li>
+                {% endif %}
+                {% for i in paged_propertys.paginator.page_range %}
+                {% if paged_propertys.number == i %}
+                <li class="page-item active">
+                    <a class="page-link" href="#">{{ i }} <span class="sr-only">(current)</span></a>
+                </li>
+                {% else %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ i }}">{{ i }}</a>
+                </li>
+                {% endif %}
+                {% endfor %}
+                {% if paged_propertys.has_next %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ paged_propertys.next_page_number }}" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </li>
+                {% else %}
+                <li class="page-item disabled">
+                    <a class="page-link" href="#" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </li>
+                {% endif %}
+            </ul>
+            {% endif %}
+        </nav>
     </div>
 </div>
 {% endblock content %}

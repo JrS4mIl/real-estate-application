@@ -1,0 +1,158 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-02-21 19:39+0300\n"
+"PO-Revision-Date: 2025-02-21 19:44+0000\n"
+"Last-Translator:   <samil072@gmail.com>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n % 1 == 0 && n % 10 == 1 && n % 100 != 11 ? 0 : n % 1 == 0 && n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 12 || n % 100 > 14) ? 1 : n % 1 == 0 && (n % 10 ==0 || (n % 10 >=5 && n % 10 <=9) || (n % 100 >=11 && n % 100 <=14 )) ? 2: 3);\n"
+"X-Translated-Using: django-rosetta 0.10.1\n"
+
+#: .\accounts\forms.py:97
+msgid "Başlık"
+msgstr "Назва"
+
+#: .\accounts\forms.py:103
+#, fuzzy
+#| msgid "Aciklama"
+msgid "Açıklama"
+msgstr "опис"
+
+#: .\accounts\views.py:51
+#, fuzzy
+#| msgid "login_welcome"
+msgid "Login Welcome {}"
+msgstr "Ласкаво просимо"
+
+#: .\accounts\views.py:55
+msgid "Disabled Account"
+msgstr "Відключений обліковий запис"
+
+#: .\accounts\views.py:57
+msgid "username_password"
+msgstr "Перевірте своє ім'я користувача та пароль"
+
+#: .\accounts\views.py:68
+msgid "register"
+msgstr "Обліковий запис створено, ви можете увійти"
+
+#: .\accounts\views.py:77
+msgid "logout"
+msgstr "Вийти"
+
+#: .\accounts\views.py:93
+msgid "Account does not exist."
+msgstr "Обліковий запис не існує"
+
+#: .\accounts\views.py:123
+msgid "Password reset successful"
+msgstr "Скидання пароля успішне"
+
+#: .\accounts\views.py:127
+msgid "Password do not match!"
+msgstr "Пароль не збігається!"
+
+#: .\accounts\views.py:158
+msgid "House added successfully."
+msgstr "Будинок успішно додано."
+
+#: .\houses\admin.py:25 .\houses\models.py:10 .\houses\models.py:28
+msgid "title"
+msgstr "назва"
+
+#: .\houses\models.py:29
+msgid "description"
+msgstr "опис"
+
+#: .\houses\models.py:37
+msgid "Adres"
+msgstr "Адреса"
+
+#: .\houses\models.py:38
+msgid "Şehir"
+msgstr "Місто"
+
+#: .\houses\models.py:39
+msgid "Kat"
+msgstr "поверх"
+
+#: .\houses\models.py:40
+msgid "Gecelik Ücret"
+msgstr "Тариф за ніч"
+
+#: .\houses\models.py:42
+msgid "Kategori"
+msgstr "Категорія"
+
+#: .\houses\models.py:43
+msgid "Oda Sayısı"
+msgstr "Кількість кімнат"
+
+#: .\houses\models.py:44
+msgid "Metrekare"
+msgstr "Квадратних метрів"
+
+#: .\realestate\settings.py:116
+msgid "English"
+msgstr "англійська"
+
+#: .\realestate\settings.py:117
+msgid "Turkish"
+msgstr "турецька"
+
+#: .\realestate\settings.py:118
+msgid "Ukrainian"
+msgstr "українська"
+
+#: .\templates\contact.html:11
+msgid "contact_title"
+msgstr "зв'яжіться з нами"
+
+#: .\templates\dashboard\dashboard.html:41
+msgid "add_house_button"
+msgstr "Опублікувати оголошення"
+
+#: .\templates\dashboard\dashboard.html:74
+msgid "not_desc"
+msgstr "Ваше оголошення відсутнє"
+
+#: .\templates\includes\header.html:33
+msgid "nav_item_home"
+msgstr "додому"
+
+#: .\templates\includes\header.html:34
+msgid "nav_properties"
+msgstr "властивості"
+
+#: .\templates\includes\header.html:35
+msgid "nav_contact_us"
+msgstr "зв'яжіться з нами"
+
+#: .\templates\includes\header.html:51
+msgid "Change Language"
+msgstr "Змінити мову"
+
+#: .\templates\properties.html:20
+#, fuzzy
+#| msgid "nav_properties"
+msgid "properties_header"
+msgstr "властивості"
+
+#: .\templates\properties.html:30
+msgid "Show All"
+msgstr "Показати все"
+
+#: .\templates\properties.html:66
+msgid "Şu anda listelenecek mülk bulunmamaktadır"
+msgstr "Наразі немає властивостей для списку"

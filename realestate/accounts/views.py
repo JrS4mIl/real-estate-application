@@ -5,12 +5,18 @@ from django.contrib import messages, auth
 from django.contrib.auth.models import User
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.contrib.auth.tokens import default_token_generator
-from django.template.defaultfilters import slugify
 from django.conf import settings
 from django.utils.encoding import force_bytes
 from django.contrib.sites.shortcuts import get_current_site
 from django.template.loader import render_to_string
 from django.core.mail import EmailMessage
+from django.utils.translation import gettext_lazy as _
+from .forms import PropertyForm
+from django.utils import translation
+from django.template.defaultfilters import slugify
+from houses.models import Property
+from django.contrib.auth.decorators import login_required
+
 
 
 # Create your views here.
@@ -42,13 +48,13 @@ def user_login(request):
             if user is not None:
                 if user.is_active:
                     login(request, user)
-                    messages.success(request, 'Welcome to the session')
+                    messages.success(request, _('Login Welcome {}').format(request.user.username))
                     return redirect('index')
 
                 else:
-                    messages.info(request, 'Disabled Account')
+                    messages.info(request, _('Disabled Account'))
             else:
-                messages.error(request, 'Check your username and password')
+                messages.error(request, _('username_password'))
     else:
         form = LoginForm()
     return render(request, 'login.html', context={'form': form})
@@ -59,7 +65,7 @@ def register(request):
         form = RegisterForm(request.POST)
         if form.is_valid():
             form.save()
-            messages.success(request, 'Account has been created,You can Login')
+            messages.success(request, _('register'))
             return redirect('login')
     else:
         form = RegisterForm()
@@ -68,7 +74,7 @@ def register(request):
 
 def user_logout(request):
     auth.logout(request)
-    messages.info(request, 'You are logged out.')
+    messages.info(request, _('logout'))
     return redirect('index')
 
 
@@ -84,10 +90,9 @@ def forgot_password(request):
             messages.success(request, 'Password reset link has been sent to your email address.')
             return redirect('login')
         else:
-            messages.error(request, 'Account does not exist.')
+            messages.error(request, _('Account does not exist.'))
             return redirect('forgot_password')
     return render(request, 'accounts/forgot_password.html')
-
 
 
 def reset_password_validate(request, uidb64, token):
@@ -106,19 +111,60 @@ def reset_password_validate(request, uidb64, token):
 
 
 def reset_password(request):
-    if request.method=='POST':
-        password=request.POST['password']
-        confirm_password=request.POST['confirm_password']
+    if request.method == 'POST':
+        password = request.POST['password']
+        confirm_password = request.POST['confirm_password']
         if password == confirm_password:
-            pk=request.session.get('uid')
-            user=User.objects.get(pk=pk)
+            pk = request.session.get('uid')
+            user = User.objects.get(pk=pk)
             user.set_password(password)
-            user.is_active=True
+            user.is_active = True
             user.save()
-            messages.success(request, 'Password reset successful')
+            messages.success(request, _('Password reset successful'))
             return redirect('login')
 
         else:
-            messages.error(request,'Password do not match!')
+            messages.error(request, _('Password do not match!'))
             return redirect('reset_password')
-    return render(request,'accounts/reset_password.html')
+    return render(request, 'accounts/reset_password.html')
+
+@login_required(login_url='login')
+def dashboard(request):
+    user=request.user
+    houses=Property.objects.filter(owner=user)
+    context={
+        'houses':houses
+    }
+    return render(request, 'dashboard/dashboard.html',context)
+
+
+@login_required(login_url='login')
+def add_house(request):
+    user_language = translation.get_language()
+    if request.method == 'POST':
+        form = PropertyForm(request.POST, request.FILES)
+        if form.is_valid():
+            house = form.save(commit=False)
+            house.owner = request.user
+            house.set_current_language(user_language)
+            house.save()
+
+            # Çeviri alanlarını güncelle
+            house.title = form.cleaned_data[f'title_{user_language}']
+            house.description = form.cleaned_data[f'description_{user_language}']
+            house.slug = slugify(house.title)
+            house.save()
+
+            messages.success(request, _('House added successfully.'))
+            return redirect('dashboard')
+        else:
+            for field, errors in form.errors.items():
+                for error in errors:
+                    messages.error(request, f"{form.fields[field].label}: {error}")
+    else:
+        form = PropertyForm()
+
+    context = {'form': form}
+    return render(request, 'dashboard/add_house.html', context)
+
+

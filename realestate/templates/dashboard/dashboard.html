@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block content %}
+<style>
+
+    .col-md-3 {
+        margin-left: 5px;
+    }
+
+
+    .nv {
+        width: 100%;
+    }
+
+
+    .row {
+        margin-left: 220px;
+    }
+
+
+    .table {
+        margin-left: 0px;
+    }
+</style>
+<div class="row">
+    <!-- Sidebar solda yer alacak -->
+    <div class="col-md-3">
+        {% include 'includes/sidebar.html' %}
+    </div>
+    <!-- Ana içerik sağda yer alacak -->
+    <div class="col-md-9">
+
+        <div class="row justify-content-center">
+            <div class="col-auto">
+                <div class="card border-default mb-3">
+                    <div class="card-header text-center text-uppercase font-weight-bold">All Houses</div>
+                    <div class="card-body text-dark">
+                        <h5 class="card-title text-center"></h5>
+                        {% include 'includes/messagetax.html' %}
+
+                        <a href="{% url 'add_house' %}" class="btn btn-info mb-3">{% trans 'add_house_button' %}</a>
+                        {% if houses %}
+                        <table class="table table-bordered w-100">
+                            <thead>
+                            <tr>
+                                <th>Title</th>
+                                <th>Address</th>
+                                <th>City</th>
+                                <th>Floor</th>
+                                <th>Nightly Rate</th>
+                                <th>Category</th>
+                                <th>Number of Rooms</th>
+                                <th>Square meters</th>
+                                <th>Status</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for house in houses %}
+                            <tr>
+                                <td>{{house.title}}</td>
+                                <td>{{house.address}}</td>
+                                <td>{{house.city}}</td>
+                                <td>{{house.floor}}</td>
+                                <td>{{house.price_per_night}}</td>
+                                <td>{{house.category}}</td>
+                                <td>{{house.room_count}}</td>
+                                <td>{{house.square_meter}}</td>
+                                <td>{{house.status}}</td>
+                            </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                        {% else %}
+                        <h4>{% trans 'not_desc' %}</h4>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

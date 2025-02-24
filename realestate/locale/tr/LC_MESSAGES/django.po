@@ -1,0 +1,158 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-02-21 19:39+0300\n"
+"PO-Revision-Date: 2025-02-21 19:42+0000\n"
+"Last-Translator:   <samil072@gmail.com>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Translated-Using: django-rosetta 0.10.1\n"
+
+#: .\accounts\forms.py:97
+msgid "Başlık"
+msgstr "Başlık"
+
+#: .\accounts\forms.py:103
+#, fuzzy
+#| msgid "Aciklama"
+msgid "Açıklama"
+msgstr "Aciklama"
+
+#: .\accounts\views.py:51
+#, fuzzy
+#| msgid "login_welcome"
+msgid "Login Welcome {}"
+msgstr "Hosgeldiniz"
+
+#: .\accounts\views.py:55
+msgid "Disabled Account"
+msgstr "Devre Dışı Hesap"
+
+#: .\accounts\views.py:57
+msgid "username_password"
+msgstr "Sifre veya Kullanici Adi Hatali"
+
+#: .\accounts\views.py:68
+msgid "register"
+msgstr "Kayit olundu"
+
+#: .\accounts\views.py:77
+msgid "logout"
+msgstr "Cikis Yapildi"
+
+#: .\accounts\views.py:93
+msgid "Account does not exist."
+msgstr "Hesap mevcut değil"
+
+#: .\accounts\views.py:123
+msgid "Password reset successful"
+msgstr "Şifre sıfırlama başarılı"
+
+#: .\accounts\views.py:127
+msgid "Password do not match!"
+msgstr "Şifreler Uyuşmuyor!"
+
+#: .\accounts\views.py:158
+msgid "House added successfully."
+msgstr "Ev başarıyla eklendi"
+
+#: .\houses\admin.py:25 .\houses\models.py:10 .\houses\models.py:28
+msgid "title"
+msgstr "baslik"
+
+#: .\houses\models.py:29
+msgid "description"
+msgstr "icerik"
+
+#: .\houses\models.py:37
+msgid "Adres"
+msgstr "Adres"
+
+#: .\houses\models.py:38
+msgid "Şehir"
+msgstr "Şehir"
+
+#: .\houses\models.py:39
+msgid "Kat"
+msgstr "Kat"
+
+#: .\houses\models.py:40
+msgid "Gecelik Ücret"
+msgstr "Gecelik Ücret"
+
+#: .\houses\models.py:42
+msgid "Kategori"
+msgstr "Kategori"
+
+#: .\houses\models.py:43
+msgid "Oda Sayısı"
+msgstr "Oda Sayısı"
+
+#: .\houses\models.py:44
+msgid "Metrekare"
+msgstr "Metrekare"
+
+#: .\realestate\settings.py:116
+msgid "English"
+msgstr "title"
+
+#: .\realestate\settings.py:117
+msgid "Turkish"
+msgstr "baslik"
+
+#: .\realestate\settings.py:118
+msgid "Ukrainian"
+msgstr "назва"
+
+#: .\templates\contact.html:11
+msgid "contact_title"
+msgstr "Bize Ulasin"
+
+#: .\templates\dashboard\dashboard.html:41
+msgid "add_house_button"
+msgstr "Ilan Yayinla"
+
+#: .\templates\dashboard\dashboard.html:74
+msgid "not_desc"
+msgstr "Ilaniniz Bulunmuyor"
+
+#: .\templates\includes\header.html:33
+msgid "nav_item_home"
+msgstr "ev"
+
+#: .\templates\includes\header.html:34
+msgid "nav_properties"
+msgstr "Kiralik Evler"
+
+#: .\templates\includes\header.html:35
+msgid "nav_contact_us"
+msgstr "Bize Ulasin"
+
+#: .\templates\includes\header.html:51
+msgid "Change Language"
+msgstr "Dili değiştir"
+
+#: .\templates\properties.html:20
+#, fuzzy
+#| msgid "nav_properties"
+msgid "properties_header"
+msgstr "Kiralik Evler"
+
+#: .\templates\properties.html:30
+msgid "Show All"
+msgstr "Tümünü Göster"
+
+#: .\templates\properties.html:66
+msgid "Şu anda listelenecek mülk bulunmamaktadır"
+msgstr "Şu anda listelenecek mülk bulunmamaktadır"
