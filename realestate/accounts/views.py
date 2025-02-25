@@ -87,7 +87,7 @@ def forgot_password(request):
             mail_subject = 'Reset Your Password'
             email_template = 'accounts/reset_password_email.html'
             send_verification_email(request, user, mail_subject, email_template)
-            messages.success(request, 'Password reset link has been sent to your email address.')
+            messages.success(request, _('Password reset link has been sent to your email address.'))
             return redirect('login')
         else:
             messages.error(request, _('Account does not exist.'))
@@ -103,10 +103,10 @@ def reset_password_validate(request, uidb64, token):
         user = None
     if user is not None and default_token_generator.check_token(user, token):
         request.session['uid'] = uid
-        messages.info(request, 'Please reset your password')
+        messages.info(request, _('Please reset your password'))
         return redirect('reset_password')
     else:
-        messages.error(request, 'This link has been expired')
+        messages.error(request, _('This link has been expired'))
         return redirect('login')
 
 

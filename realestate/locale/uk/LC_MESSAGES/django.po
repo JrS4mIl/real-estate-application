@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-21 19:39+0300\n"
-"PO-Revision-Date: 2025-02-21 19:44+0000\n"
+"POT-Creation-Date: 2025-02-25 18:04+0300\n"
+"PO-Revision-Date: 2025-02-25 15:10+0000\n"
 "Last-Translator:   <samil072@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -19,11 +19,11 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n % 1 == 0 && n % 10 == 1 && n % 100 != 11 ? 0 : n % 1 == 0 && n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 12 || n % 100 > 14) ? 1 : n % 1 == 0 && (n % 10 ==0 || (n % 10 >=5 && n % 10 <=9) || (n % 100 >=11 && n % 100 <=14 )) ? 2: 3);\n"
 "X-Translated-Using: django-rosetta 0.10.1\n"
 
-#: .\accounts\forms.py:97
+#: .\accounts\forms.py:104
 msgid "Başlık"
 msgstr "Назва"
 
-#: .\accounts\forms.py:103
+#: .\accounts\forms.py:110
 #, fuzzy
 #| msgid "Aciklama"
 msgid "Açıklama"
@@ -51,9 +51,21 @@ msgstr "Обліковий запис створено, ви можете уві
 msgid "logout"
 msgstr "Вийти"
 
+#: .\accounts\views.py:90
+msgid "Password reset link has been sent to your email address."
+msgstr "Посилання для зміни пароля надіслано на вашу електронну адресу."
+
 #: .\accounts\views.py:93
 msgid "Account does not exist."
 msgstr "Обліковий запис не існує"
+
+#: .\accounts\views.py:106
+msgid "Please reset your password"
+msgstr "Будь ласка, скиньте свій пароль"
+
+#: .\accounts\views.py:109
+msgid "This link has been expired"
+msgstr "Термін дії цього посилання закінчився"
 
 #: .\accounts\views.py:123
 msgid "Password reset successful"
@@ -103,15 +115,15 @@ msgstr "Кількість кімнат"
 msgid "Metrekare"
 msgstr "Квадратних метрів"
 
-#: .\realestate\settings.py:116
+#: .\realestate\settings.py:122
 msgid "English"
 msgstr "англійська"
 
-#: .\realestate\settings.py:117
+#: .\realestate\settings.py:123
 msgid "Turkish"
 msgstr "турецька"
 
-#: .\realestate\settings.py:118
+#: .\realestate\settings.py:124
 msgid "Ukrainian"
 msgstr "українська"
 
@@ -127,21 +139,25 @@ msgstr "Опублікувати оголошення"
 msgid "not_desc"
 msgstr "Ваше оголошення відсутнє"
 
-#: .\templates\includes\header.html:33
+#: .\templates\includes\header.html:34
+msgid "Change Language"
+msgstr "Змінити мову"
+
+#: .\templates\includes\header.html:50
 msgid "nav_item_home"
 msgstr "додому"
 
-#: .\templates\includes\header.html:34
+#: .\templates\includes\header.html:52
 msgid "nav_properties"
 msgstr "властивості"
 
-#: .\templates\includes\header.html:35
+#: .\templates\includes\header.html:53
 msgid "nav_contact_us"
 msgstr "зв'яжіться з нами"
 
-#: .\templates\includes\header.html:51
-msgid "Change Language"
-msgstr "Змінити мову"
+#: .\templates\profile.html:54 .\templates\properties.html:68
+msgid "Şu anda listelenecek mülk bulunmamaktadır"
+msgstr "Наразі немає властивостей для списку"
 
 #: .\templates\properties.html:20
 #, fuzzy
@@ -152,7 +168,3 @@ msgstr "властивості"
 #: .\templates\properties.html:30
 msgid "Show All"
 msgstr "Показати все"
-
-#: .\templates\properties.html:66
-msgid "Şu anda listelenecek mülk bulunmamaktadır"
-msgstr "Наразі немає властивостей для списку"

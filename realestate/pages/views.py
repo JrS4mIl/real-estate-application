@@ -62,10 +62,10 @@ def contact(request):
     }
     return render(request,'contact.html',context)
 def category_list(request, category_slug):
-    propertys = Property.objects.all().filter(category__slug=category_slug)
+    paged_propertys = Property.objects.all().filter(category__slug=category_slug,available=True,status='published')
     category = Category.objects.all()
     context = {
-        'propertys': propertys,
+        'paged_propertys': paged_propertys,
         'category': category
     }
     return render(request, 'properties.html', context)

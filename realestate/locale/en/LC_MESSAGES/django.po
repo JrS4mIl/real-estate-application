@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-21 19:39+0300\n"
+"POT-Creation-Date: 2025-02-25 18:04+0300\n"
 "PO-Revision-Date: 2025-02-21 19:42+0000\n"
 "Last-Translator:   <samil072@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,11 +19,11 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Translated-Using: django-rosetta 0.10.1\n"
 
-#: .\accounts\forms.py:97
+#: .\accounts\forms.py:104
 msgid "Başlık"
 msgstr "Title"
 
-#: .\accounts\forms.py:103
+#: .\accounts\forms.py:110
 #, fuzzy
 #| msgid "Aciklama"
 msgid "Açıklama"
@@ -51,9 +51,21 @@ msgstr "Account has been created,You can Login"
 msgid "logout"
 msgstr "Logout"
 
+#: .\accounts\views.py:90
+msgid "Password reset link has been sent to your email address."
+msgstr ""
+
 #: .\accounts\views.py:93
 msgid "Account does not exist."
 msgstr "Account does not exist"
+
+#: .\accounts\views.py:106
+msgid "Please reset your password"
+msgstr ""
+
+#: .\accounts\views.py:109
+msgid "This link has been expired"
+msgstr ""
 
 #: .\accounts\views.py:123
 msgid "Password reset successful"
@@ -103,15 +115,15 @@ msgstr "Number of Rooms"
 msgid "Metrekare"
 msgstr "Square meters"
 
-#: .\realestate\settings.py:116
+#: .\realestate\settings.py:122
 msgid "English"
 msgstr ""
 
-#: .\realestate\settings.py:117
+#: .\realestate\settings.py:123
 msgid "Turkish"
 msgstr ""
 
-#: .\realestate\settings.py:118
+#: .\realestate\settings.py:124
 msgid "Ukrainian"
 msgstr ""
 
@@ -127,21 +139,25 @@ msgstr "Post an Ad"
 msgid "not_desc"
 msgstr "Your listing is not available."
 
-#: .\templates\includes\header.html:33
+#: .\templates\includes\header.html:34
+msgid "Change Language"
+msgstr "Change Language"
+
+#: .\templates\includes\header.html:50
 msgid "nav_item_home"
 msgstr "home"
 
-#: .\templates\includes\header.html:34
+#: .\templates\includes\header.html:52
 msgid "nav_properties"
 msgstr "properties"
 
-#: .\templates\includes\header.html:35
+#: .\templates\includes\header.html:53
 msgid "nav_contact_us"
 msgstr "contact us"
 
-#: .\templates\includes\header.html:51
-msgid "Change Language"
-msgstr "Change Language"
+#: .\templates\profile.html:54 .\templates\properties.html:68
+msgid "Şu anda listelenecek mülk bulunmamaktadır"
+msgstr "There are currently no properties to list"
 
 #: .\templates\properties.html:20
 msgid "properties_header"
@@ -150,7 +166,3 @@ msgstr "Properties"
 #: .\templates\properties.html:30
 msgid "Show All"
 msgstr "Show All"
-
-#: .\templates\properties.html:66
-msgid "Şu anda listelenecek mülk bulunmamaktadır"
-msgstr "There are currently no properties to list"

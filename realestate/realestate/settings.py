@@ -89,10 +89,8 @@ WSGI_APPLICATION = 'realestate.wsgi.application'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+   'default': env.db()
+
 }
 
 # Password validation
@@ -149,11 +147,11 @@ MESSAGE_TAGS = {
 }
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_PORT = 587
-EMAIL_HOST_USER = 'djangoonlinefood09@gmail.com'
-EMAIL_HOST_PASSWORD = 'ekuenaulbkuxlbcg'
+EMAIL_PORT = env('EMAIL_PORT')
+EMAIL_HOST_USER = env('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD')
 EMAIL_USE_TLS = True
-DEFAULT_FROM_EMAIL = 'foodOnline Marketplace <zeuszypan@gmail.com>'
+DEFAULT_FROM_EMAIL = 'KVARTX <djangoonlinefood09@gmail.com>'
 EMAIL_HOST = 'smtp.gmail.com'
 
 LOCALE_PATHS = [

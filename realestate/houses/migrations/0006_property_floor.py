@@ -14,7 +14,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='property',
             name='floor',
-            field=models.IntegerField(default=django.utils.timezone.now, verbose_name='Kat'),
+            field=models.IntegerField(default=0, verbose_name='Kat'),
             preserve_default=False,
         ),
     ]
