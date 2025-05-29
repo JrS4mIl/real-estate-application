@@ -51,7 +51,6 @@ class RegisterForm(UserCreationForm):
         user = super().save(commit=False)
         if commit:
             user.save()
-            Profile.objects.create(user=user, is_featured=False)
         return user
 
     def clean_email(self):
