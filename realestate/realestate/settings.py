@@ -151,7 +151,7 @@ EMAIL_PORT = env('EMAIL_PORT')
 EMAIL_HOST_USER = env('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD')
 EMAIL_USE_TLS = True
-DEFAULT_FROM_EMAIL = 'KVARTX <djangoonlinefood09@gmail.com>'
+DEFAULT_FROM_EMAIL = 'KVARTX <kkvartx@gmail.com>'
 EMAIL_HOST = 'smtp.gmail.com'
 
 LOCALE_PATHS = [
