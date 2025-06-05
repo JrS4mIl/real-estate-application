@@ -5,6 +5,7 @@ from django.template.defaultfilters import slugify
 from django.utils.translation import gettext_lazy as _
 from parler.models import  TranslatableModel,TranslatedFields
 from django.utils.text import slugify
+from realestate.custom_storages import ImageSettingStorage, MediaStorage
 # Create your models here.
 class Category(models.Model):
     name = models.CharField(_('title'),max_length=100, unique=True)
@@ -29,11 +30,11 @@ class Property(TranslatableModel):
         description = models.TextField(_('description'),max_length=400)
     )
     slug = models.SlugField(unique=True, editable=False, blank=True)
-    photo = models.ImageField(upload_to='photos/%Y/%m/%d/')
-    photo_1 = models.ImageField(upload_to='photos/%Y/%m/%d/', blank=True)
-    photo_2 = models.ImageField(upload_to='photos/%Y/%m/%d/', blank=True)
-    photo_3 = models.ImageField(upload_to='photos/%Y/%m/%d/', blank=True)
-    photo_4 = models.ImageField(upload_to='photos/%Y/%m/%d/', blank=True)
+    photo = models.ImageField(storage=ImageSettingStorage())
+    photo_1 = models.ImageField(storage=ImageSettingStorage(),blank=True)
+    photo_2 = models.ImageField(storage=ImageSettingStorage(),blank=True)
+    photo_3 = models.ImageField(storage=ImageSettingStorage(),blank=True)
+    photo_4 = models.ImageField(storage=ImageSettingStorage(),blank=True)
     address = models.CharField(max_length=255, verbose_name=_("Adres"))
     city = models.CharField(max_length=100, verbose_name=_("Şehir"))
     floor = models.IntegerField(verbose_name=_("Kat"),default=1)

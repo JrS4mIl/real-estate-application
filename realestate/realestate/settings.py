@@ -50,8 +50,7 @@ INSTALLED_APPS = [
     'houses',
     'accounts',
     'rosetta',
-    'storages'
-
+    'storages',
 ]
 
 MIDDLEWARE = [
@@ -162,6 +161,8 @@ else:
     STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{STATICFILES_LOCATION}/'
     STATIC_ROOT = STATIC_URL
     MEDIA_LOCATION = 'media'
+    IMAGE_SETTING_LOCATION = MEDIA_LOCATION + '/image_settings'
+    DOCUMENT_LOCATION = MEDIA_LOCATION + '/documents'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 MESSAGE_TAGS = {
